@@ -3132,7 +3132,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1498639052}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1824250578}
+        m_TargetAssemblyTypeName: JoCardManager, Assembly-CSharp
+        m_MethodName: MonsterAtk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1498639052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4080,7 +4092,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23ebdaec1d5c7e45801934092998f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsters: []
+  mnameText:
+  - {fileID: 974332135}
+  - {fileID: 1062705331}
+  - {fileID: 1768491363}
+  matkText:
+  - {fileID: 59483105}
+  - {fileID: 1496303722}
+  - {fileID: 1790655655}
+  mhpText:
+  - {fileID: 1050771411}
+  - {fileID: 818558795}
+  - {fileID: 1585404328}
+  MonImg:
+  - {fileID: 4296843049884758353}
+  - {fileID: 1498639052}
+  - {fileID: 1773006177}
+  Monspr:
+  - {fileID: 21300000, guid: 53c2b62ca2134124595698f988bae13a, type: 3}
+  - {fileID: 21300000, guid: 43f757772ff7585488ffc7dd5be24200, type: 3}
+  - {fileID: 21300000, guid: 779043a1da751044eace6ff65065bf85, type: 3}
+  userHp: {fileID: 799827784}
 --- !u!1 &1833781316
 GameObject:
   m_ObjectHideFlags: 0
@@ -4634,10 +4666,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: JoMonster, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1824250578}
+        m_TargetAssemblyTypeName: JoCardManager, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
