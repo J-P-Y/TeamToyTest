@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
@@ -10,16 +12,18 @@ using Random = UnityEngine.Random;
 public class monster 
 {
     public string name;
+    public int ID;
     public int curHp;
     public int maxHp;
     public int minAttack;
     public int maxAttack;
 
-    public monster(string monsterName, int monsterMaxHp, int monsterCurHp, int monsterMaxAttack, int monsterMinAttack)
+    public monster(string monsterName,int monsterId, int _hp, int monsterMaxAttack, int monsterMinAttack)
     {
        name = monsterName;
-       maxHp = monsterMaxHp;
-       curHp = monsterCurHp;
+       ID = monsterId;
+       maxHp = _hp;
+       curHp = _hp;
        maxAttack = monsterMinAttack;
        minAttack = monsterMinAttack;
 
@@ -29,11 +33,13 @@ public class monster
 public class card
 {
     public string name;
+    public int ID;
     public int attack;
     public int hp;
-    public card(string cardName, int cardAttack, int cardHp)
+    public card(string cardName,int card_Id, int cardAttack, int cardHp)
     {
         name = cardName;
+        ID = card_Id;
         attack = cardAttack;
         hp = cardHp;
 
@@ -50,57 +56,114 @@ public class MBH_UIManager : MonoBehaviour
     public int playerCurHp;
     public int cardValue;
     public int cardMaxValue = 5;
-    int monsterExist;
-    int monsterSpawn;
-    bool turn;
+    int monsterExist=0; // 소환된 몬스터 수량 시작턴에 0으로 시작 
+    int monsterSpawnId; // 소환해야하는 몬스터 ID
+    int monsterValue;//소환해야하는 몬스터 수량 
 
-     // 몬스터 존재여부 판별  
+    int addCardValue;// 새로 뽑아야하는 카드 수량
+                     
+    bool turn; 
+
+     
 
    
 
 
-    public List<string> monsters = new List<string>();
+    public List<monster> monsters = new List<monster>();
     
-    public List<string> cards= new List<string>();
+    public List<card> cards= new List<card>();
 
+    void AddMonster(string _name, int _id,int _hp, int _maxAtk,int _minAtk)
+    {
+        monster newmonster = new monster(_name, _id, _hp, _maxAtk, _minAtk);
+        monsters.Add(newmonster);
+    }
 
+    void Addcard(string _name, int _id, int _atk, int _hp)
+    {
+        card newcard = new card(_name, _id, _atk, _hp);
+        cards.Add(newcard);
+    }
 
 
 
     public void Start()
     {
-        monster goblin= new monster("고블린", 100, 100, 12, 10);
-        monsters.Add("goblin");
+        //monster goblin= new monster("고블린",1, 100, 100, 12, 10);
+        //monsters.Add("goblin");
 
-        monster orc = new monster("오크", 120, 120, 14, 9);
-        monsters.Add("orc");
+        //monster orc = new monster("오크",2, 120, 120, 14, 9);
+        //monsters.Add("orc");
 
-        monster troll = new monster("트롤", 110, 110, 10, 10);
-        monsters.Add("troll");
-        
-        monster zombie = new monster("좀비", 80, 80, 7, 7);
-        monsters.Add("zombie");
+        //monster troll = new monster("트롤",3, 110, 110, 10, 10);
+        //monsters.Add("troll");
 
-        monster slime = new monster("슬라임", 60, 60, 6, 6);
-        monsters.Add("slime");
+        //monster zombie = new monster("좀비", 4, 80, 80, 7, 7);
+        //monsters.Add("zombie");
 
-        cards.Add("공격1");
-        cards.Add("공격2");
-        cards.Add("공격3");
-        cards.Add("공격4");
-        cards.Add("방어1");
-        cards.Add("공격2");
-        cards.Add("공격3");
-        cards.Add("공격4");
-        cards.Add("특수1");
-        cards.Add("특수2");
+        //monster slime = new monster("슬라임",5, 60, 60, 6, 6);
+        //monsters.Add("slime");
+        AddMonster("고블린", 1, 100, 12, 10);
 
+        AddMonster("오크", 2, 120, 14, 9);
+
+        AddMonster("트롤", 3, 110, 10, 10);
+
+        AddMonster("좀비", 4, 80, 7, 7);
+
+        AddMonster("슬라임", 5, 60, 6, 6);
+
+        //card attack1 = new card("공격1", 1, 1, 0);
+        //cards.Add("공격1");
+
+        //card attack2 = new card("공격2",2, 2, 0);
+        //cards.Add("공격2");
+
+        //card attack3 = new card("공격3",3, 3, 0);
+        //cards.Add("공격3");
+
+        //card attack4 = new card("공격4",4, 4, 0);
+        //cards.Add("공격4");
+
+        //card defense1 = new card("방어1",5, 0, 1);
+        //cards.Add("방어1");
+
+        //card defense2 = new card("방어2",6, 0, 2);
+        //cards.Add("방어2");
+
+        //card defense3 = new card("방어3",7, 0, 3);
+        //cards.Add("방어3");
+
+        //card defense4 = new card("방어4",8, 0, 4);
+        //cards.Add("방어4");
+
+        //card utility1 = new card("유틸1",9, 0, 1);
+        //cards.Add("특수1");
+
+        //card utility2 = new card("유틸2",10, 0, 2);
+        //cards.Add("특수2");
+
+        Addcard("공격1", 1, 1, 0);
+
+
+        Addcard("공격2", 2, 2, 0);
+
+        Addcard("공격3", 1, 1, 0);
+
+        Addcard("공격4", 1, 1, 0);
+
+        Addcard("방어1", 1, 1, 0);
+
+        Addcard("방어2", 1, 1, 0);
+
+        Addcard("방어3", 3, 3, 0);
+
+        Addcard("방어4", 4, 4, 0);
+
+        Addcard("특수1", 1, 1, 0);
+
+        Addcard("특수2", 2, 2, 0);
         Summon();
-
-
-
-
-
 
 
     }
@@ -108,17 +171,47 @@ public class MBH_UIManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        
+        HP_Manager();
+
     }
 
   
 
 
-    void Summon()
+    void Summon() // 몬스터 소환 함수 
     {
-        if (monsterExist==0)
+        if (monsterExist == 0)
         {
-            monsterSpawn = Random.Range(1, 4);   
+            turn = false;
+            monsterValue = Random.Range(1, 4); // 1~3 사이의 몬스터 수량을 랜덤으로 
+            monsterExist = monsterValue;
+                       
+            for (int i = 0; i < monsterValue + 1; i++)
+            {
+                
+
+
+            }
+            
+        }
+
+
+    }
+
+    void card_Draw()
+    {
+        if (turn! && cardValue != cardMaxValue )
+        { 
+           addCardValue = cardMaxValue - cardValue;
+            for (int i = 0; i < addCardValue + 1; i++)
+            {
+                
+            
+
+
+                cardValue++;    
+            }
+                       
         }
     }
 
@@ -126,35 +219,51 @@ public class MBH_UIManager : MonoBehaviour
     {
         if (!turn)
         {
-             turn = true;
-        }
-
-
-
-        else if (turn)
-        {
-            int monAttack = Random.Range(1, 3);
+              
             
-            turn = false;
-
-        }
-
-        else if (turn)
-        {
             
+            turn = true;
+        }
+
+
+
+        else if (turn) // 몬스터 한 마리
+        {
+           //플레이어 체력에서 몬스터 한마리 공격력 감소
+                    
+            turn = false; // 턴 변경 
+
+        }
+
+        else if (turn) // 몬스터 두 마리 
+        {
+            //  몬스터 두마리의 데미지(각 몬스터의 최소 최대 데미지 랜덤값)들 합해서 플레이어 체력에서 빼기  
             turn = false;
         }
 
-        else if (turn)
+        else if (turn) // 몬스터 세 마리 
         {
+            //  몬스터 세마리의 데미지(각 몬스터의 최소 최대 데미지 랜덤값)들 합해서 플레이어 체력에서 빼기  
             turn = false;
         }
         
     }
 
+    public void turnEnd()
+    {
+        // 버튼을 클릭하면 변수를 바꿈 
+
+    }
     void HP_Manager()
     {
-        
+        //playerHptext.text = playerHp + "/" + playerMaxHp;
+        //monsterHptext.text = monHp + "/" + monMaxHp;
+
+        //playerHpbar.maxValue = playerMaxHp;
+        //playerHpbar.value = playerHp;
+
+        //monsterHpbar.maxValue = monMaxHp;
+        //monsterHpbar.value = monHp;
 
 
     }
