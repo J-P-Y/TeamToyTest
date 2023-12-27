@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour
+public class TCG : MonoBehaviour
 {
     // 카드 타입 정의
     public enum CardType { Attack, Defense, Heal }
 
-        private Card selectedCard;
+        
     public class Card
     {
         public string name;
@@ -67,17 +67,7 @@ public class GameManager : MonoBehaviour
 
     void PlayerTurn()
     {
-        void UseSelectedCard()
-        {
-            if (selectedCard! = null)
-            {
-                if (selectedCard.cost <= playerAvailableCost)
-                {
-                    playerAvailableCost -= selectedCard.cost;
-                    playerHand.Remove(selectedCard);
-                }
-            }
-        }
+        
         // 여기서 플레이어의 턴 동작을 추가하세요.
         // 코스트에 맞는 카드를 사용하고, 더 이상 사용할 수 있는 카드가 없다면 턴 종료 버튼을 누르도록 구현
     }
