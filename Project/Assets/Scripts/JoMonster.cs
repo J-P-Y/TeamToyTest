@@ -10,26 +10,27 @@ public class JoMonster
     public int atk;
     public int maxHp;
     public int currentHp;
-    public Sprite monSpr;
+    public Sprite monSprite;
     public bool die;
+    
+    public JoMonster()
+    {
 
-    //尻疑
-    public TextMeshProUGUI nametext;
-    public TextMeshProUGUI atktext;
-    public TextMeshProUGUI hptext;
-    public Image monImg;
-
-    public JoMonster(string _name,int _atk,int _hp) // 持失切
+    }
+    public JoMonster(string _name,int _atk,int _hp,Sprite _monSprite) // 持失切
     {
         monname = _name;
         atk = _atk;
         maxHp = _hp;
         currentHp = _hp;
-        die = true;
+        monSprite = _monSprite;
+        die = false;
     }
 
     public void Die()
     {
-        die = false;
+        die = true;
     }
+
+    
 }
