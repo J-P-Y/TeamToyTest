@@ -10,7 +10,7 @@ public class Card_3 : MonoBehaviour
   public int power;
   public string cardDescription;
  
-  public Card(int Id, string CardName, int Cost, int Power, string CardDescription)
+  public Card_3(int Id, string CardName, int Cost, int Power, string CardDescription)
   {
     id = Id;
     cardName = CardName;
