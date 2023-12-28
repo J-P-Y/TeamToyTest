@@ -74,13 +74,13 @@ public class MBH_UIManager : MonoBehaviour
 
 
 
-    public List<monster> monsters = new List<monster>();
+    public List<GameObject> monsters = new List<GameObject>();
     
-    public List<card> cards= new List<card>();
+    public List<GameObject> cards= new List<GameObject>();
 
     void AddMonster(string _name, int _id,int _hp, int _maxAtk,int _minAtk)
     {
-        monster newmonster = new monster(_name, _id, _hp, _maxAtk, _minAtk);
+        GameObject newmonster = new GameObject(_name, _id, _hp, _maxAtk, _minAtk);
         monsters.Add(newmonster);
     }
 
@@ -181,7 +181,7 @@ public class MBH_UIManager : MonoBehaviour
             for (int i = 0; i < monsterValue + 1; i++)
             {
 
-                monster[Random.Range(0,monsters.Count)]=
+                monsters[Random.Range(0,monsters.Count)]
                 
 
 
