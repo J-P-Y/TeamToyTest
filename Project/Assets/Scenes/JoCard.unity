@@ -3511,12 +3511,12 @@ MonoBehaviour:
   uVar: {fileID: 1842683350}
   uCost: {fileID: 366737885}
   CardPrefab:
-  - {fileID: 847696015994306770, guid: b542a25f460e7fb448917dca6227a5b4, type: 3}
-  - {fileID: 847696015994306770, guid: 65a1414f5ab65e94ea12685ff77df15a, type: 3}
-  - {fileID: 847696015994306770, guid: f5c9723ae126944449e48a22efb1650e, type: 3}
-  - {fileID: 847696015994306770, guid: a02ae813ec1d9144ba0851d8c4317786, type: 3}
-  - {fileID: 847696015994306770, guid: c4cefa7bdfd1edd4fab2c631fbacda67, type: 3}
-  - {fileID: 847696015994306770, guid: 58c2e300a50c967438e1d5c54925e0a9, type: 3}
+  - {fileID: 3504076862554344680, guid: b542a25f460e7fb448917dca6227a5b4, type: 3}
+  - {fileID: 4890237457085823865, guid: 65a1414f5ab65e94ea12685ff77df15a, type: 3}
+  - {fileID: 1046673344267779567, guid: f5c9723ae126944449e48a22efb1650e, type: 3}
+  - {fileID: 6927079133332288173, guid: a02ae813ec1d9144ba0851d8c4317786, type: 3}
+  - {fileID: 3407755292592503426, guid: c4cefa7bdfd1edd4fab2c631fbacda67, type: 3}
+  - {fileID: 8054016147235424285, guid: 58c2e300a50c967438e1d5c54925e0a9, type: 3}
   cardPos: {fileID: 1876337647}
   resetBtn: {fileID: 2045410465}
   resetText: {fileID: 1949557358}
