@@ -12,6 +12,7 @@ public class JoCardManager : MonoBehaviour
     bool turn;
     public Sprite[] Monspr;
 
+
     public GameObject[] monObj;
     public Image[] monImg;
     public TextMeshProUGUI[] monNameText;
@@ -53,9 +54,9 @@ public class JoCardManager : MonoBehaviour
     public void Awake()
     {
         resetBtn.SetActive(false);
-        monsters.Add(new JoMonster("블루머쉬맘", 20, 100,Monspr[0]));
-        monsters.Add(new JoMonster("파란달팽이", 15, 80, Monspr[1]));
-        monsters.Add(new JoMonster("물의 정령", 10, 120, Monspr[2]));
+        monsters.Add(new JoMonster("블루머쉬맘", 2, 10,Monspr[0]));
+        monsters.Add(new JoMonster("파란달팽이", 1, 15, Monspr[1]));
+        monsters.Add(new JoMonster("물의 정령", 3, 10, Monspr[2]));
         monPos = -1;
         RandSpawn();
         
@@ -90,6 +91,7 @@ public class JoCardManager : MonoBehaviour
     {
         if (!turn)
         {
+            monPos = -1;
             UserTurn();
         }
         else
@@ -125,6 +127,16 @@ public class JoCardManager : MonoBehaviour
             uVar.value = userCurHp;
             uVar.maxValue = userMaxHp;
             uCost.text = "코스트\n"+userCurCost + "/" + userMaxCost;
+
+            if (monrand[i].die == true)
+            {
+                monObj[i].SetActive(false);
+            }
+        }
+        if (monrand[0].die == true && monrand[1].die == true && monrand[2].die == true)
+        {
+            resetText.text = "안타깝네요\n클리어했네요;n버튼 클릭 시 재시작!";
+            resetBtn.SetActive(true);
         }
     }
     
@@ -146,15 +158,7 @@ public class JoCardManager : MonoBehaviour
             myInstance.transform.SetParent(cardPos);
         }
     }
-    public void Useratk(int _val) // 유저 공격
-    {
-        monrand[_val].currentHp -= 20;
-        if (monrand[_val].currentHp <= 0)// 체력이 0 이면 삭제
-        {
-            monObj[_val].SetActive(false);
-            monrand[_val].Die();
-        }
-    }
+    
 
     public void MonAttack() // 몬스터 공격
     {
@@ -162,19 +166,22 @@ public class JoCardManager : MonoBehaviour
         {
             if (!monrand[i].die) //안죽었니?
             {
-                userCurHp -= monrand[i].atk;
-                if (userCurHp <= 0)
+                if (monrand[i].stun)
                 {
-                    resetText.text = "축하드립니다\n죽었습니다!\n버튼 클릭 시 재시작!";
-                    resetBtn.SetActive(true);
+                    Debug.Log("스턴임");
+                    monrand[i].stun = false;
                 }
+                else
+                {
+                    userCurHp -= monrand[i].atk;
+                    if (userCurHp <= 0)
+                    {
+                        resetText.text = "축하드립니다\n죽었습니다!\n버튼 클릭 시 재시작!";
+                        resetBtn.SetActive(true);
+                    }
+                }
+                
             }
-        }
-
-        if(monrand[0].die == true && monrand[1].die == true && monrand[2].die == true)
-        {
-            resetText.text = "안타깝네요\n클리어했네요;n버튼 클릭 시 재시작!";
-            resetBtn.SetActive(true);
         }
     } 
 

@@ -12,6 +12,7 @@ public class JoMonster
     public int currentHp;
     public Sprite monSprite;
     public bool die;
+    public bool stun;
     
     public JoMonster()
     {
@@ -25,11 +26,6 @@ public class JoMonster
         currentHp = _hp;
         monSprite = _monSprite;
         die = false;
-    }
-
-    public void Die()
-    {
-        die = true;
     }
 
     

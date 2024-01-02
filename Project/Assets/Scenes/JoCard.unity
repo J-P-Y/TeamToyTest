@@ -3516,7 +3516,6 @@ MonoBehaviour:
   - {fileID: 1046673344267779567, guid: f5c9723ae126944449e48a22efb1650e, type: 3}
   - {fileID: 6927079133332288173, guid: a02ae813ec1d9144ba0851d8c4317786, type: 3}
   - {fileID: 3407755292592503426, guid: c4cefa7bdfd1edd4fab2c631fbacda67, type: 3}
-  - {fileID: 8054016147235424285, guid: 58c2e300a50c967438e1d5c54925e0a9, type: 3}
   cardPos: {fileID: 1876337647}
   resetBtn: {fileID: 2045410465}
   resetText: {fileID: 1949557358}
