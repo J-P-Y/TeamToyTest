@@ -5,23 +5,28 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
+    public float health;
+    public float maxHealth;
+    public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
 
     bool isLive;
-
+    
     Rigidbody2D rigid;
+    Animator anim;
     SpriteRenderer spriter;
     // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         spriter = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isLive)
+        if (!isLive)
             return;
 
         Vector2 dirvec = target.position - rigid.position;
@@ -31,7 +36,7 @@ public class Enemy : MonoBehaviour
     }
     void LateUpdate()
     {
-        if (isLive)
+        if (!isLive)
             return;
         spriter.flipX = target.position.x < rigid.position.x;
     }
@@ -39,7 +44,37 @@ public class Enemy : MonoBehaviour
     void OnEnable()
     {
         target = GameManager.Instance.player.GetComponent<Rigidbody2D>();
-        
+        isLive = true;
+        health = maxHealth;
     }
 
+    public void Init(SpawnData data)
+    {
+        anim.runtimeAnimatorController = animCon[data.spriteType];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = data.health;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Bullet"))
+            return;
+
+        health -= collision.GetComponent<Bullet>().damage;
+
+        if (health > 0)
+        {
+
+        }
+        else
+        {
+           Dead();
+
+        }
+        void Dead()
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
