@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     void Awake()
     {
         player = GetComponentInParent<Player>();
-       
+        
         
     }
 
@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            LevelUp(20, 5);
+            LevelUp(10, 1);
         }
     }
 
@@ -66,10 +66,11 @@ public class Weapon : MonoBehaviour
             case 0:
                 speed = 150;
                 Batch();
-
                 break;
+
             default:
-                speed = 0.3f;
+                speed = 0.6f;
+                Fire();
                 break;
         }
     }
@@ -102,7 +103,7 @@ public class Weapon : MonoBehaviour
     }
     void Fire()
     {
-        if (player.scanner.nearestTarget)
+        if (!player.scanner.nearestTarget)
             return;
 
         Vector3 targetPos = player.scanner.nearestTarget.position;

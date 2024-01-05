@@ -7,13 +7,11 @@ public class Bullet : MonoBehaviour
     public float damage;
     public int per;
 
-
     Rigidbody2D rigid;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        
     }
     public void Init(float damage, int per, Vector3 dir)
     {
@@ -23,7 +21,6 @@ public class Bullet : MonoBehaviour
         if (per > -1)
         {
             rigid.velocity = dir * 15f;
-            
         }
     }
 
