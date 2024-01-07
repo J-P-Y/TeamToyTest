@@ -17,4 +17,5 @@ public class Follow : MonoBehaviour
         rect.position = Camera.main.WorldToScreenPoint
             (GameManager.Instance.player.transform.position);
     }
+
 }
